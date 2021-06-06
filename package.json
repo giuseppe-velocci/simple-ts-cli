@@ -4,8 +4,8 @@
   "description": "a simple typescript framework to create cli apps",
   "main": "index.js",
   "scripts": {
-    "test": "tsc index.ts && npx jest",
-    "start": "tsc index.ts && node index.js"
+    "test": "tsc && npx jest",
+    "start": "tsc && node dist/index.js"
   },
   "keywords": [
     "cli",
