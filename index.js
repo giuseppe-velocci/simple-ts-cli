@@ -1,0 +1,10 @@
+"use strict";
+exports.__esModule = true;
+var CliEntryPoint_1 = require("./src/CliEntryPoint");
+var HelloWorld_1 = require("./src/HelloWorld");
+var CliItems_1 = require("./src/CliItems");
+var ClIO_1 = require("./src/ClIO");
+var io = new ClIO_1.ClIOImpl();
+var mainList = new Array(new CliItems_1.CliCommand('say hello', function () { return HelloWorld_1.sayHello(io); }), new CliItems_1.CliMenu('actions', new Array(new CliItems_1.CliCommand('say goodbye', function () { return HelloWorld_1.sayGoodbye(io); }))));
+var entryPoint = new CliEntryPoint_1["default"](mainList, io);
+entryPoint.start();

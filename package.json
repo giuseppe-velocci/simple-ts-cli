@@ -1,0 +1,22 @@
+{
+  "name": "simple-ts-cli",
+  "version": "1.0.0",
+  "description": "a simple typescript framework to create cli apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest",
+    "start": "tsc index.ts && node index.js"
+  },
+  "keywords": [
+    "cli",
+    "js"
+  ],
+  "author": "Giuseppe Velocci",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.4",
+    "ts-jest": "^27.0.2",
+    "typescript": "^4.3.2"
+  }
+}
