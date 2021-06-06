@@ -21,5 +21,5 @@ const mainList = new Array<CliItem>(
     ))
 );
 
-const entryPoint = CliEntryPoint.getInstace(mainList, io);
+const entryPoint = new CliEntryPoint(mainList, io);
 entryPoint.start();

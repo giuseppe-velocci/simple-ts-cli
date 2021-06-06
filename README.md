@@ -54,7 +54,7 @@ const mainList = new Array<CliItem>(
 );
 
 // then simply pass this list to CliEntryPoint singleton and start()
-const entryPoint = CliEntryPoint.getInstace(mainList, io);
+const entryPoint = new CliEntryPoint(mainList, io);
 entryPoint.start();
 ```
 
