@@ -6,6 +6,9 @@ export default class CliEntryPoint {
   io: ClIO;
 
   constructor(items: Array<CliItem>, io: ClIO) {
+    if (!items || items.length < 1)
+      throw new Error('Must be provided a list of CliItem');
+
     this.items = items;
     this.io = io;
   }

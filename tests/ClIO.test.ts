@@ -3,6 +3,10 @@ import { ClIO } from '../src/ClIO';
 export class User {
     inputValues: Array<string>;
 
+    constructor() {
+        this.inputValues = [];
+    }
+
     willInput(inputs: Array<string>) {
         this.inputValues = inputs;
     }
@@ -76,7 +80,7 @@ test('ClIOTest prompt should acquire an undefined if too many values are request
     const testAction = (input: string) => target.print(input);
     target.prompt(testAction);
 
-    expect(target.printedValues).toStrictEqual(['undefined']);
+    expect(target.printedValues).toStrictEqual([undefined]);
 });
 
 test('ClIOTest exit program should print "exit"', () => {
