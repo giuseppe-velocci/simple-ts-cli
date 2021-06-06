@@ -13,6 +13,17 @@ export interface ClIO {
 }
 
 export class ClIOImpl implements ClIO {
+    private static instance: ClIOImpl;
+
+    private constructor() {}
+
+    static getInstance(){
+        if (! ClIOImpl.instance)
+            ClIOImpl.instance = new ClIOImpl();
+
+        return ClIOImpl.instance;
+    }
+
     prompt(action: (choice: string) => void): void {
         rl.question('', (line) => {
             action(line);

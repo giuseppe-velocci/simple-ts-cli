@@ -1,4 +1,4 @@
-import { ClIO } from '../src/ClIO';
+import { ClIO } from '../src/core/ClIO';
 
 export class User {
     inputValues: Array<string>;

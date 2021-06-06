@@ -1,24 +1,25 @@
-import CliEntryPoint from './src/CliEntryPoint';
-import { sayGoodbye, sayHello } from './src/HelloWorld';
-import { CliMenu, CliItem, CliCommand } from './src/CliItems';
-import { ClIO, ClIOImpl } from './src/ClIO';
+import CliEntryPoint from './src/core/CliEntryPoint';
+import { CliMenu, CliItem, CliCommand } from './src/core/CliItems';
+import { ClIO, ClIOImpl } from './src/core/ClIO';
 
-const io: ClIO = new ClIOImpl();
+const io: ClIO = ClIOImpl.getInstance();
 
+// sample methods. Ideally they should be moved in external files
+const sayHello = (io: ClIO) => {
+    io.print('Hello world!');
+}
+
+const sayGoodbye = (io: ClIO) => {
+    io.print('Goodbye world!');
+}
+
+// example of a very basic application
 const mainList = new Array<CliItem>(
-    /*
     new CliCommand('say hello', () => sayHello(io)),
     new CliMenu('actions', new Array<CliItem>(
         new CliCommand('say goodbye', () => sayGoodbye(io)),
     ))
-    */
-    new CliCommand('say hello', () => {}),
-    new CliMenu('actions', [
-        new CliMenu('one', [
-            new CliCommand('cmd', () => {})
-        ])
-    ]),
 );
 
-const entryPoint = new CliEntryPoint(mainList, io);
+const entryPoint = CliEntryPoint.getInstace(mainList, io);
 entryPoint.start();

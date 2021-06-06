@@ -2,12 +2,21 @@ import { CliMenu, CliCommand, CliItem } from './CliItems';
 import { ClIO } from './ClIO';
 
 export default class CliEntryPoint {
+  private static instance: CliEntryPoint;
+
   items: Array<CliItem>;
   io: ClIO;
-
-  constructor(items: Array<CliItem>, io: ClIO) {
+  
+  private constructor(items: Array<CliItem>, io: ClIO) {
     this.items = items;
     this.io = io;
+  }
+
+  static getInstace(items: Array<CliItem>, io: ClIO) {
+    if (! CliEntryPoint.instance)
+      CliEntryPoint.instance = new CliEntryPoint(items, io);
+
+    return CliEntryPoint.instance;
   }
 
   start() {
