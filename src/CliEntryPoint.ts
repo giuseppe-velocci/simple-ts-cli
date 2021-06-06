@@ -6,14 +6,14 @@ export default class CliEntryPoint {
   io: ClIO;
 
   constructor(items: Array<CliItem>, io: ClIO) {
-    if (!items || items.length < 1)
-      throw new Error('Must be provided a list of CliItem');
-
     this.items = items;
     this.io = io;
   }
 
   start() {
+    if (this.items === undefined || this.items.length < 1)
+      throw new Error('Must be provided a list of CliItem');
+
     const rootmenu = new CliMenu("", this.items);
     const quitCommand = new QuitCommand(this.io);
     this.execMenu(rootmenu, quitCommand);
@@ -32,6 +32,8 @@ export default class CliEntryPoint {
         this.execMenu(selectedItem, new BackCommand(() => this.execMenu(menu, backCommand)));
       } else if (selectedItem instanceof CliCommand) {
         this.execCommand(selectedItem, () => this.execMenu(menu, backCommand));
+      } else if (selectedItem instanceof NavCommand) {
+        selectedItem.action();
       } else {
         this.io.error('invalid selection');
       }

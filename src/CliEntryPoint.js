@@ -22,6 +22,8 @@ var CliEntryPoint = /** @class */ (function () {
         this.io = io;
     }
     CliEntryPoint.prototype.start = function () {
+        if (this.items === undefined || this.items.length < 1)
+            throw new Error('Must be provided a list of CliItem');
         var rootmenu = new CliItems_1.CliMenu("", this.items);
         var quitCommand = new QuitCommand(this.io);
         this.execMenu(rootmenu, quitCommand);
@@ -40,6 +42,9 @@ var CliEntryPoint = /** @class */ (function () {
             }
             else if (selectedItem instanceof CliItems_1.CliCommand) {
                 _this.execCommand(selectedItem, function () { return _this.execMenu(menu, backCommand); });
+            }
+            else if (selectedItem instanceof NavCommand) {
+                selectedItem.action();
             }
             else {
                 _this.io.error('invalid selection');
