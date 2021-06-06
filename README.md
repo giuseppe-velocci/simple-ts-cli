@@ -5,7 +5,7 @@ This minimal framework allows the creation of simple cli application where a lis
 
 **Prerequisites:**
 
-- node v16+
+- node v12+
 - typescript
 
 **Installation:**
